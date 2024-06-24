@@ -2,13 +2,38 @@
     padding: 0;
     margin: 0;
 }
+/* For WebKit browsers */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #242424; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* Scrollbar thumb color */
+    border-radius: 10px; /* Roundness of the scrollbar thumb */
+    border: 3px solid #242424; /* Space around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888; /* Scrollbar thumb color on hover */
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #242424;
+}
+
 
 body{
     /* background-color: black;
     color: white; */
     font-family: "Poppins", sans-serif;
-  font-weight: 700;
   font-style: normal;
+  color: white;
 
 }
 .invert{
@@ -20,6 +45,7 @@ body{
 }
 .container{
     display: flex;
+    height: 100vh;
 }
 
 
@@ -78,10 +104,14 @@ align-items: center;
 margin-left: 8px;
 margin-bottom: 13px;
 }
+
+.library .box-container{
+    max-height: 200px;
+    overflow: scroll;
+}
 .library .top p{
     color: white;
-    margin-top: -0.7rem;
-    margin-left: -14rem;
+    margin-left: -12rem;
     color: #b3b3b3;
 
 }
@@ -96,7 +126,7 @@ margin-bottom: 13px;
     max-width: 340px;
     height: 160px;
 }
-.library .box1 h4,p{
+.library .box1 .heading,.para{
     color: white;
     padding-left: 14px;
     padding-top: 14px;
@@ -105,7 +135,6 @@ margin-bottom: 13px;
 .library .box1 button{
     margin-top: 20px;
     margin-left: 14px;
-    background-color: white;
     color: black;
     border: none;
     padding: 6px 14px;
@@ -118,7 +147,7 @@ margin-bottom: 13px;
     display: flex;
     gap: 7px;
     flex-wrap: wrap;
-    margin-top: 12rem;
+    margin-top: 5rem;
 }
 .bottom div p{
     font-size: 7px;
@@ -145,4 +174,97 @@ margin-bottom: 13px;
 }
 .bottom .language button img{
     width: 8px;
+}
+.right{
+    background-color: #121212;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.header .nav{
+    padding: 25px;
+}
+.header .buttons{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+.header .buttons .login{
+    font-weight:700;
+    padding: 17px 30px;
+    color: rgb(0, 0, 0);
+    border-radius: 50px; /* Adjust border radius to control the roundness */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+.header .buttons .signup {
+    font-weight: 700;
+    background-color: transparent;
+    color: gray;
+    padding: 17px 25px;
+    border: 2px solid transparent; /* Ensure all borders are transparent */
+    border-radius: 50px; /* Adjust border radius to control the roundness */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header .buttons .signup:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Light background color on hover */
+    color: white; /* Change text color on hover */
+    font-size: 17px;
+}
+
+.header .buttons .login:hover {
+    padding: 18px 32px;
+    font-weight: 700;
+}
+.playlists {
+    padding-left: 20px;
+}
+.playlists h1{
+    color: white;
+}
+
+.playlists .card-container{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    max-height: 80vh;
+    overflow: scroll;
+}
+.playlists .card-container .card {
+    margin: 10px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #242424;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card > * {
+    padding-top: 10px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: contain;
+}
+
+
+.play {
+    position: absolute;
+    top: 200px; /* Start position off-screen */
+    right: 19px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.playlists .card-container .card:hover .play {
+    top: 160px; /* End position on-screen */
+    opacity: 1;
 }
