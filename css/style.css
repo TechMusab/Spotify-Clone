@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    /* background-color: black;
+    color: white; */
+    font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
+}
+.invert{
+    filter: invert(1);
+}
+.border{
+    border: 2px solid black;
+
+}
+.container{
+    display: flex;
+}
+
+
+.left{
+    width:25vw ;
+    background-color: #121212;
+    padding: 20px;
+}
+.right{
+    width: 75vw;
+}
+
+.left .logo{
+    margin-left: 8px;
+    margin-top: 8px;
+}
+.home .home-container {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    display: flex;
+}
+.home .home-container .icon{
+    margin-top: 8px;
+    margin-left: 8px;
+    width: 20px;
+    color: #b3b3b3;
+}
+.home .home-container .text{
+    margin-top: 8px;
+    margin-left: 12px;
+    font-weight: 700;
+    color: #b3b3b3;
+}
+.home .search-container {
+    display: flex;
+}
+.home .search-container .search-icon{
+    margin-top: 8px;
+    margin-left: 8px;
+    width: 20px;
+   
+}
+.home .search-container .search-text{
+    margin-top: 8px;
+    margin-left: 12px;
+    font-weight: 700;
+    color: #b3b3b3;
+}
+.library{
+    margin-top: 30px;
+}
+.library .top{
+    display: flex;
+justify-content: space-between;
+align-items: center;
+margin-left: 8px;
+margin-bottom: 13px;
+}
+.library .top p{
+    color: white;
+    margin-top: -0.7rem;
+    margin-left: -14rem;
+    color: #b3b3b3;
+
+}
+.library .top img{
+    width: 20px;
+}
+.library .box1{
+    margin-top: 30px;
+    border-radius: 5px;
+    margin-left: 2px;
+    background-color:#242424;
+    max-width: 340px;
+    height: 160px;
+}
+.library .box1 h4,p{
+    color: white;
+    padding-left: 14px;
+    padding-top: 14px;
+    font-weight: 700;
+}
+.library .box1 button{
+    margin-top: 20px;
+    margin-left: 14px;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 6px 14px;
+    font-weight: 700;
+    border-radius: 13px;
+
+}
+.bottom div {
+    width: 220px;
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 12rem;
+}
+.bottom div p{
+    font-size: 7px;
+    color: #b3b3b3;
+}
+.bottom .language{
+    margin-top: 20px;
+    margin-left: 8px;
+ 
+}
+.bottom .language button{
+    display: flex;
+    background-color: transparent;
+    color: white;
+    font-size: 7px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 30px;
+    border: 2px solid white;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.bottom .language button img{
+    width: 8px;
+}
