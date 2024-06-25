@@ -43,8 +43,15 @@ async function getSongs() {
     document.querySelector("#duration").innerText = `${convertSecondsToMinutes(
       currentAudio.currentTime
     )} : ${convertSecondsToMinutes(currentAudio.duration)}`;
-    document.querySelector(".circle").style.left=  currentAudio.currentTime/currentAudio.duration * 100 +"%" 
+    document.querySelector(".circle").style.left=  currentAudio.currentTime/currentAudio.duration * 100 +" %" 
   });
+}
+async function updateseekbar(currentAudio){
+    document.querySelector(".seekbar").addEventListener("click", e => {
+        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+        document.querySelector(".circle").style.left = percent + "%";
+        currentAudio.currentTime = ((currentAudio.duration) * percent) / 100
+    })
 }
 
 async function main() {
@@ -73,6 +80,7 @@ async function main() {
         // Create new Audio object and play the corresponding song
         var audio = new Audio(`/songs/${songs[index]}`);
         audio.play();
+        document.querySelector(".circle").style.left=0+"%";
 
         // Update currentAudio to the new Audio object
         currentAudio = audio;
@@ -103,6 +111,8 @@ async function main() {
           updatetimeandtitle(index, currentAudio);
         });
         updatetimeandtitle(index, currentAudio);
+        updateseekbar(currentAudio);
+
       });
     });
 
