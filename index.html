@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>Spotify Clone</title>
@@ -42,19 +43,19 @@
                     <p>Your Library</p>
                     <img class="invert" src="./images/plus.svg" alt="plus">
                 </div>
-            <div class="box-container">
-                <div class="box1">
-                    <h4 class="heading">Create Your First Playlist</h4>
-                    <p class="para">It's easy we'll help you</p>
-                    <button>Create playlist</button>
+                <div class="box-container">
+                    <div class="box1">
+                        <h4 class="heading">Create Your First Playlist</h4>
+                        <p class="para">It's easy we'll help you</p>
+                        <button>Create playlist</button>
+                    </div>
+                    <div class="box1">
+                        <h4 class="heading">Let's find something podcasts to follow</h4>
+                        <p class="para">We'll keep you updated on new episodes</p>
+                        <button>Browse podcasts</button>
+                    </div>
                 </div>
-                <div class="box1">
-                    <h4 class="heading">Let's find something podcasts to follow</h4>
-                    <p class="para">We'll keep you updated on new episodes</p>
-                    <button>Browse podcasts</button>
-                </div>
-            </div>
-               
+
             </div>
             <div class="bottom">
                 <div>
@@ -93,20 +94,16 @@
             <div class="header">
                 <div class="nav">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
-                    fill="none">
-                    <path
-                        d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18"
-                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
+                        fill="none">
+                        <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="#ffffff"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
                         fill="none">
-                        <path
-                            d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18"
-                            stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
+                        <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" stroke="#ffffff"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                
+
                 </div>
                 <div class="buttons">
                     <button class="signup">Sign Up</button>
@@ -118,20 +115,27 @@
                     Spotify Playlists
                 </h1>
                 <div class="card-container">
-              
+
                 </div>
                 <div class="playbar">
-                    <di class="seekbar">
+                    <div class="seekbar">
                         <div class="circle">
 
                         </div>
-                    </di>
-                    <div class="song-buttons">
-                        <img src="./images/previous.svg" alt="">
-                        <img id="play-pause" src="./images/play.svg" alt="Play">
-                        <img src="./images/next.svg" alt="">
                     </div>
-                    
+                    <div class="bar">
+                        <div id="info">
+                            
+                        </div>
+                        <div class="song-buttons">
+                            <img id="previous" src="./images/previous.svg" alt="">
+                            <img id="play-pause" src="./images/play.svg" alt="Play">
+                            <img id="next" src="./images/next.svg" alt="">
+                        </div>
+                        <div id="duration">
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

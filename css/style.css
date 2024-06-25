@@ -288,7 +288,6 @@ body {
   bottom: 0;
   border-radius: 10px;
   border: 2px solid #000000;
-  padding: 1px;
 }
 .circle {
   background: black;
@@ -299,4 +298,14 @@ body {
   bottom: 6px;
   left: 0%;
   transition: left 0.5s;
+}
+.playbar .bar{
+    display: flex;
+    justify-content: space-between;
+}
+.bar #info{
+    color: rgb(0, 0, 0);
+}
+.bar #duration{
+    color: rgb(0, 0, 0);
 }

@@ -1,3 +1,23 @@
+function convertSecondsToMinutes(seconds) {
+  if (isNaN(seconds) || seconds < 0) {
+    return "00:00"; // Handle invalid or negative input
+  }
+
+  // Ignore milliseconds by flooring the input seconds
+  seconds = Math.floor(seconds);
+
+  // Calculate minutes and remaining seconds
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  // Pad minutes and seconds with leading zeros if necessary
+  const paddedMinutes = String(minutes).padStart(2, "0");
+  const paddedSeconds = String(remainingSeconds).padStart(2, "0");
+
+  // Return formatted time
+  return `${paddedMinutes}:${paddedSeconds}`;
+}
+
 async function getSongs() {
   let a = await fetch("http://127.0.0.1:5500/songs/");
   let response = await a.text();
@@ -13,71 +33,104 @@ async function getSongs() {
   }
   return songs;
 }
+
+ async function updatetimeandtitle(index, currentAudio) {
+    let songs = await getSongs();
+  let info = document.getElementById("info");
+  info.innerText = songs[index].replaceAll("%20", " ");
+  currentAudio.addEventListener("timeupdate", () => {
+    console.log(currentAudio.currentTime, currentAudio.duration);
+    document.querySelector("#duration").innerText = `${convertSecondsToMinutes(
+      currentAudio.currentTime
+    )} : ${convertSecondsToMinutes(currentAudio.duration)}`;
+    document.querySelector(".circle").style.left=  currentAudio.currentTime/currentAudio.duration * 100 +"%" 
+  });
+}
+
 async function main() {
-    try {
-        let songs = await getSongs();
-        console.log(songs);
+  try {
+    let songs = await getSongs();
+    console.log(songs);
+    let element = document.querySelector(".card-container");
+    element.innerHTML = "";
 
-        let element = document.querySelector(".card-container");
-        element.innerHTML = "";
+    for (const song of songs) {
+      element.innerHTML += makeSongHTML(song);
+    }
 
-        for (const song of songs) {
-            element.innerHTML += makeSongHTML(song);
+    let currentAudio = null; 
+
+    // Add event listeners to play buttons dynamically
+    let playButtons = document.querySelectorAll(".playthesong");
+    playButtons.forEach((button, index) => {
+      button.addEventListener("click", function () {
+        // Stop the currently playing audio (if any)
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0; // Reset playback to start
         }
 
-        let currentAudio = null; // Variable to hold the currently playing Audio object
+        // Create new Audio object and play the corresponding song
+        var audio = new Audio(`/songs/${songs[index]}`);
+        audio.play();
 
-        // Add event listeners to play buttons dynamically
-        let playButtons = document.querySelectorAll(".playthesong");
-        playButtons.forEach((button, index) => {
-            button.addEventListener("click", function () {
-                // Stop the currently playing audio (if any)
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0; // Reset playback to start
-                }
+        // Update currentAudio to the new Audio object
+        currentAudio = audio;
+        updatePlayPauseButton(true);
 
-                // Create new Audio object and play the corresponding song
-                var audio = new Audio(`/songs/${songs[index]}`);
-                audio.play();
-
-                // Update currentAudio to the new Audio object
-                currentAudio = audio;
-
-                // Update play/pause button icon
-                updatePlayPauseButton(true); // true for play icon
-            });
+        let previous = document.getElementById("previous");
+        previous.addEventListener("click", function () {
+          currentAudio.pause();
+          // current index is playing song when previous is clicked previuos song plays when i again click previous itplay previuos because
+          // i am doing index-1 if i dont do this again & again  current index will be play upon clicking.
+          var audio = new Audio(`/songs/${songs[index - 1]}`);
+          audio.play();
+          currentAudio = audio;
+          updatePlayPauseButton(true);
+          index = index - 1; // updating the index
+          updatetimeandtitle(index, currentAudio);
         });
-
-        // Play/pause button event listener
-        let playPauseButton = document.getElementById("play-pause");
-        playPauseButton.addEventListener("click", function () {
-            if (currentAudio) {
-                if (currentAudio.paused) {
-                    currentAudio.play();
-                    updatePlayPauseButton(true); // true for play icon
-                } else {
-                    currentAudio.pause();
-                    updatePlayPauseButton(false); // false for pause icon
-                }
-            }
+        let next = document.getElementById("next");
+        next.addEventListener("click", function () {
+          currentAudio.pause();
+          // current index is playing song when previous is clicked previuos song plays when i again click previous itplay previuos because
+          // i am doing index+1 if i dont do this again & again  current index will be play upon clicking.
+          var audio = new Audio(`/songs/${songs[index + 1]}`);
+          audio.play();
+          currentAudio = audio;
+          updatePlayPauseButton(true);
+          index = index + 1; // updating the index
+          updatetimeandtitle(index, currentAudio);
         });
+        updatetimeandtitle(index, currentAudio);
+      });
+    });
 
-    } catch (error) {
-        console.error("Error in main:", error);
-    }
-}
-
-// Function to update play/pause button icon
-function updatePlayPauseButton(isPlay) {
     let playPauseButton = document.getElementById("play-pause");
-    if (isPlay) {
-        playPauseButton.src = "./images/pause.svg";
-    } else {
-        playPauseButton.src = "./images/play.svg";
-    }
+    playPauseButton.addEventListener("click", function () {
+      if (currentAudio) {
+        if (currentAudio.paused) {
+          currentAudio.play();
+          updatePlayPauseButton(true);
+        } else {
+          currentAudio.pause();
+          updatePlayPauseButton(false);
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error in main:", error);
+  }
 }
 
+function updatePlayPauseButton(isPlay) {
+  let playPauseButton = document.getElementById("play-pause");
+  if (isPlay) {
+    playPauseButton.src = "./images/pause.svg";
+  } else {
+    playPauseButton.src = "./images/play.svg";
+  }
+}
 
 function makeSongHTML(song) {
   let newhtml = `
