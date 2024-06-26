@@ -49,14 +49,10 @@ async function getSongs() {
     document.querySelector(".circle").style.left=  currentAudio.currentTime/currentAudio.duration * 100 +" %" 
   });
 }
-async function updateseekbar(currentAudio){
 
-    document.querySelector(".seekbar").addEventListener("click", e => {
-        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
-        document.querySelector(".circle").style.left = percent + "%";
-        currentAudio.currentTime = ((currentAudio.duration) * percent) / 100
-    })
-}
+
+  
+
 
 
 async function main() {
@@ -106,6 +102,7 @@ async function main() {
           currentAudio = audio;
           updatePlayPauseButton(true);
           index = index - 1; // updating the index
+          document.querySelector(".circle").style.left = 0 + "%";
           updatetimeandtitle(index, currentAudio);
         });
         let next = document.getElementById("next");
@@ -118,14 +115,21 @@ async function main() {
           currentAudio = audio;
           updatePlayPauseButton(true);
          index = index + 1; // updating the index
+         document.querySelector(".circle").style.left = 0 + "%";
           updatetimeandtitle(index, currentAudio);
         });
         updatetimeandtitle(index, currentAudio);
-        updateseekbar(currentAudio);
+
 
       });
     });
 //  in main ftn
+
+document.querySelector(".seekbar").addEventListener("click", e => {
+  let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+  document.querySelector(".circle").style.left = percent + "%";
+  currentAudio.currentTime = ((currentAudio.duration) * percent) / 100
+})
 let playPauseButton = document.getElementById("play-pause");
 playPauseButton.addEventListener("click", function () {
   if (currentAudio) {
@@ -172,39 +176,15 @@ function updatePlayPauseButton(isPlay) {
 }
 const artists = [
   "Taylor Swift",
-  "Drake",
-  "Dilijit Dosanjh",
-  "Ed Sheeran",
-  "Ariana Grande",
-  "The Weeknd",
-  "Billie Eilish",
-  "Post Malone",
-  "Justin Bieber",
-  "Dua Lipa",
-  "Bruno Mars",
-  "Adele",
-  "Shawn Mendes",
-  "Rihanna",
-  "Katy Perry",
-  "Coldplay",
-  "Kanye West",
-  "Lady Gaga",
-  "Imagine Dragons",
-  "Maroon 5",
-  "Nicki Minaj",
-  "Sam Smith",
-  "Sia",
-  "Calvin Harris",
-  "Khalid",
-  "Lana Del Rey",
-  "Camila Cabello",
-  "Lorde",
-  "Halsey"
+  "Zack Knight",
+  "Hadiqa Khan",
+  "Phontom Planet",
+  "Ammy Virk",
 ];
 
 let i=1;
 function makeSongHTML(song) {
-  if(i>5){
+  if(i>4){
     i=1;
   }
   

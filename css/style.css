@@ -349,6 +349,9 @@ body {
 .accent{
   accent-color: rgb(7, 157, 207);
 }
+.song-buttons{
+  cursor: pointer;
+}
 @media screen and (max-width: 1450px) {
   .library .top p{
     margin-left: -5rem;
