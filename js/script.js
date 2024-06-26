@@ -1,20 +1,23 @@
+
+
+function toggleSidebar() {
+document.querySelector('.left').style.left="0";
+}
+function closesidebar() {
+  document.querySelector('.left').style.left="-100%";
+}
+
+
 function convertSecondsToMinutes(seconds) {
   if (isNaN(seconds) || seconds < 0) {
-    return "00:00"; // Handle invalid or negative input
+    return "00:00"; 
   }
-
-  // Ignore milliseconds by flooring the input seconds
   seconds = Math.floor(seconds);
-
-  // Calculate minutes and remaining seconds
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-
-  // Pad minutes and seconds with leading zeros if necessary
   const paddedMinutes = String(minutes).padStart(2, "0");
   const paddedSeconds = String(remainingSeconds).padStart(2, "0");
 
-  // Return formatted time
   return `${paddedMinutes}:${paddedSeconds}`;
 }
 
@@ -54,8 +57,9 @@ async function updateseekbar(currentAudio){
     })
 }
 
+
 async function main() {
-  try {
+
     let songs = await getSongs();
     console.log(songs);
     let element = document.querySelector(".card-container");
@@ -67,23 +71,28 @@ async function main() {
 
     let currentAudio = null; 
 
-    // Add event listeners to play buttons dynamically
+  // Selecting All the buttons with class .playthesong
+    
     let playButtons = document.querySelectorAll(".playthesong");
     playButtons.forEach((button, index) => {
+      // Adding the event listeners to every button selected 
       button.addEventListener("click", function () {
         // Stop the currently playing audio (if any)
+// When i play the 1st song current audio will be null it skips this 
         if (currentAudio) {
           currentAudio.pause();
-          currentAudio.currentTime = 0; // Reset playback to start
+          currentAudio.currentTime = 0; 
         }
 
         // Create new Audio object and play the corresponding song
         var audio = new Audio(`/songs/${songs[index]}`);
         audio.play();
+        // When songs will play seekbar restarts 
         document.querySelector(".circle").style.left=0+"%";
 
         // Update currentAudio to the new Audio object
         currentAudio = audio;
+  
         updatePlayPauseButton(true);
 
         let previous = document.getElementById("previous");
@@ -107,7 +116,7 @@ async function main() {
           audio.play();
           currentAudio = audio;
           updatePlayPauseButton(true);
-          index = index + 1; // updating the index
+         index = index + 1; // updating the index
           updatetimeandtitle(index, currentAudio);
         });
         updatetimeandtitle(index, currentAudio);
@@ -115,23 +124,23 @@ async function main() {
 
       });
     });
-
-    let playPauseButton = document.getElementById("play-pause");
-    playPauseButton.addEventListener("click", function () {
-      if (currentAudio) {
-        if (currentAudio.paused) {
-          currentAudio.play();
-          updatePlayPauseButton(true);
-        } else {
-          currentAudio.pause();
-          updatePlayPauseButton(false);
-        }
-      }
-    });
-  } catch (error) {
-    console.error("Error in main:", error);
+//  in main ftn
+let playPauseButton = document.getElementById("play-pause");
+playPauseButton.addEventListener("click", function () {
+  if (currentAudio) {
+    if (currentAudio.paused) {
+      currentAudio.play();
+      updatePlayPauseButton(true);
+    } else {
+      currentAudio.pause();
+      updatePlayPauseButton(false);
+    }
   }
+});
+
 }
+// main ftn ends
+
 
 function updatePlayPauseButton(isPlay) {
   let playPauseButton = document.getElementById("play-pause");
@@ -141,23 +150,57 @@ function updatePlayPauseButton(isPlay) {
     playPauseButton.src = "./images/play.svg";
   }
 }
+const artists = [
+  "Taylor Swift",
+  "Drake",
+  "Dilijit Dosanjh",
+  "Ed Sheeran",
+  "Ariana Grande",
+  "The Weeknd",
+  "Billie Eilish",
+  "Post Malone",
+  "Justin Bieber",
+  "Dua Lipa",
+  "Bruno Mars",
+  "Adele",
+  "Shawn Mendes",
+  "Rihanna",
+  "Katy Perry",
+  "Coldplay",
+  "Kanye West",
+  "Lady Gaga",
+  "Imagine Dragons",
+  "Maroon 5",
+  "Nicki Minaj",
+  "Sam Smith",
+  "Sia",
+  "Calvin Harris",
+  "Khalid",
+  "Lana Del Rey",
+  "Camila Cabello",
+  "Lorde",
+  "Halsey"
+];
 
+let i=1;
 function makeSongHTML(song) {
+  if(i>5){
+    i=1;
+  }
+  
   let newhtml = `
         <div class="card">
             <div class="play">
                 <button class="playthesong">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" color="#000000" fill="none">
-                        <circle cx="12" cy="12" r="12" fill="#1ed760"/>
-                        <path d="M9.5 11.1998V12.8002C9.5 14.3195 9.5 15.0791 9.95576 15.3862C10.4115 15.6932 11.0348 15.3535 12.2815 14.6741L13.7497 13.8738C15.2499 13.0562 16 12.6474 16 12C16 11.3526 15.2499 10.9438 13.7497 10.1262L12.2815 9.32594C11.0348 8.6465 10.4115 8.30678 9.95576 8.61382C9.5 8.92086 9.5 9.6805 9.5 11.1998Z" fill="black" />
-                    </svg>
-                </button>
+                    <img  src="./images/playbutton.svg" alt="playbutton">
+              </button>
             </div>
-            <img src="https://i.scdn.co/image/ab67706f000000021178668a0433d73e34bb4af5" alt="">
+            <img src="../images/cover (${i}).jpg" alt="">
             <h2>${song.replaceAll("%20", " ")}</h2>
-            <p>Soothen Your Body</p>
+            <p>${artists[i]}</p>
         </div>
     `;
+    i++;
   return newhtml;
 }
 

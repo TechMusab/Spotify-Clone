@@ -8,24 +8,28 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #242424; /* Track color */
+  background: #242424; 
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #555; /* Scrollbar thumb color */
-  border-radius: 10px; /* Roundness of the scrollbar thumb */
-  border: 3px solid #242424; /* Space around thumb */
+  background-color: #555; 
+  border-radius: 10px; 
+  border: 3px solid #242424;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #888; /* Scrollbar thumb color on hover */
+  background-color: #888; 
 }
 
-/* For Firefox */
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #555 #242424;
 }
+
+
+
+
 
 body {
   /* background-color: black;
@@ -50,6 +54,7 @@ body {
   background-color: #121212;
   padding: 20px;
 }
+
 .right {
   width: 75vw;
   height: 100vh;
@@ -59,6 +64,9 @@ body {
 .left .logo {
   margin-left: 8px;
   margin-top: 8px;
+}
+.left .logo  img{
+  width: 150px;
 }
 .home .home-container {
   margin-top: 12px;
@@ -189,7 +197,7 @@ body {
   font-weight: 700;
   padding: 17px 30px;
   color: rgb(0, 0, 0);
-  border-radius: 50px; /* Adjust border radius to control the roundness */
+  border-radius: 50px; 
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -199,16 +207,18 @@ body {
   background-color: transparent;
   color: gray;
   padding: 17px 25px;
-  border: 2px solid transparent; /* Ensure all borders are transparent */
-  border-radius: 50px; /* Adjust border radius to control the roundness */
+  border: 2px solid transparent;
+  border-radius: 50px;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
+.header .menu{
+  display: none;
+}
 .header .buttons .signup:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Light background color on hover */
-  color: white; /* Change text color on hover */
+  background-color: rgba(0, 0, 0, 0.1); 
+  color: white; 
   font-size: 17px;
 }
 
@@ -224,14 +234,14 @@ body {
 }
 
 .playlists .card-container {
+  margin-top: 20px;
   display: flex;
-  gap: 5px;
+  gap: 25px;
   flex-wrap: wrap;
   max-height: 80vh;
   overflow: scroll;
 }
 .playlists .card-container .card {
-  margin: 10px;
   width: 200px;
   padding: 10px;
   border-radius: 5px;
@@ -249,19 +259,23 @@ body {
 
 .card img {
   width: 100%;
-  object-fit: contain;
+  border-radius: 10px;
 }
 
 .play {
   position: absolute;
-  top: 200px; /* Start position off-screen */
+  top: 200px; 
   right: 19px;
   opacity: 0;
   transition: all 0.3s ease;
 }
+.playthesong{
+  background-color: transparent;
+  border: none;
+}
 
 .playlists .card-container .card:hover .play {
-  top: 160px; /* End position on-screen */
+  top: 160px;
   opacity: 1;
 }
 .playbar {
@@ -309,4 +323,118 @@ body {
 }
 .bar #duration{
     color: rgb(0, 0, 0);
+}
+.header .logo{
+  display: none;
+}
+.close{
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  transition: all 0.5s ease;
+}
+.close img{
+  filter: invert(1);
+}
+@media screen and (max-width: 1450px) {
+  .library .top p{
+    margin-left: -5rem;
+  }
+}
+
+
+
+@media screen and (max-width: 992px) {
+  .left{
+    position: absolute;
+    left: -100%;
+    transition: all 0.5s ease;
+    z-index: 1;
+height: 100%;
+width: 40vw;
+
+  }
+.right{
+  width: 100vw;
+}
+.playbar{
+  width: 90%;
+}
+.seekbar{
+  width: 98%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #121212;
+}
+
+.header .logo {
+  display: block;
+  margin-top: 10px; 
+}
+
+.header .logo img {
+  width: 100px;
+}
+
+.header .nav {
+  display: none; 
+}
+
+.header .menu {
+  display: block;
+  margin-right: 10px;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.header .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.header .buttons .login {
+  font-weight: 700;
+  padding: 10px 20px; 
+  color: #000; 
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header .buttons .signup {
+  font-weight: 700;
+  padding: 10px 25px; 
+  color: gray; 
+  border: 2px solid transparent; 
+  border-radius: 50px; 
+  font-size: 14px; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header .buttons .signup:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+  color: white;
+}
+
+.header .buttons .login:hover {
+  padding: 10px 22px; 
+}
+.library .top p{
+  margin-left: -1rem;
+}
+
+
+}
+@media screen and (max-width: 637px) {
+  .close{
+    left: 195px;
+  }
+
 }
