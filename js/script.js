@@ -124,6 +124,13 @@ async function main() {
   });
   let playPauseButton = document.getElementById("play-pause");
   playPauseButton.addEventListener("click", function () {
+    if (!currentAudio){
+      let i=0;
+      var audio = new Audio(`/songs/${songs[i]}`);
+      audio.play();
+      currentAudio = audio;
+      updatetimeandtitle(i, currentAudio);
+    }
     if (currentAudio) {
       if (currentAudio.paused) {
         currentAudio.play();
@@ -134,7 +141,7 @@ async function main() {
       }
     }
   });
-  
+
   document.querySelector(".range-slider")
     .getElementsByTagName("input")[0]
     .addEventListener("change", (e) => {
