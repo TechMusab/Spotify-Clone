@@ -50,6 +50,7 @@ async function getSongs() {
   });
 }
 async function updateseekbar(currentAudio){
+
     document.querySelector(".seekbar").addEventListener("click", e => {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         document.querySelector(".circle").style.left = percent + "%";
@@ -137,7 +138,26 @@ playPauseButton.addEventListener("click", function () {
     }
   }
 });
+document.querySelector(".range-slider").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+  console.log(e.target);
+  currentAudio.volume = parseInt(e.target.value) / 100
+  if (currentAudio.volume >0){
+      document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("mute.svg", "volume.svg")
+  }
+})
+document.querySelector(".volume>img").addEventListener("click", e=>{ 
+  if(e.target.src.includes("volume.svg")){
+      e.target.src = e.target.src.replace("volume.svg", "mute.svg")
+      currentAudio.volume = 0;
+      document.querySelector(".range-slider").getElementsByTagName("input")[0].value = 0;
+  }
+  else{
+      e.target.src = e.target.src.replace("mute.svg", "volume.svg")
+      currentAudio.volume = .10;
+      document.querySelector(".range-slider").getElementsByTagName("input")[0].value = 10;
+  }
 
+})
 }
 // main ftn ends
 
@@ -203,5 +223,6 @@ function makeSongHTML(song) {
     i++;
   return newhtml;
 }
+
 
 main();

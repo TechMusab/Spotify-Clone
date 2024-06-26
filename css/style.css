@@ -336,11 +336,26 @@ body {
 .close img{
   filter: invert(1);
 }
+.volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.range-slider input{
+  cursor: pointer;
+}
+.accent{
+  accent-color: rgb(7, 157, 207);
+}
 @media screen and (max-width: 1450px) {
   .library .top p{
     margin-left: -5rem;
   }
 }
+
+
 
 
 
@@ -358,10 +373,18 @@ width: 40vw;
   width: 100vw;
 }
 .playbar{
-  width: 90%;
+  height: 20vw;
+  width: 95%;
 }
 .seekbar{
   width: 98%;
+}
+.bar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
 }
 
 .header {
